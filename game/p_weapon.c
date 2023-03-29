@@ -756,6 +756,19 @@ ROCKET
 ======================================================================
 */
 
+void Rocket_Think(edict_t* ent, vec3_t start) {
+	int i;
+	i = 0;
+	vec3_t grenadeVec = { 0, 0, 0 };
+	while (i < 15) {
+		grenadeVec[0] = crandom();
+		grenadeVec[1] = crandom();
+		grenadeVec[2] = crandom();
+		fire_grenade(ent, start, grenadeVec, 50, 5, 5, 150);
+		i = i + 1;
+	}
+}
+
 void Weapon_RocketLauncher_Fire (edict_t *ent)
 {
 	vec3_t	offset, start;
@@ -780,7 +793,8 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 
 	VectorSet(offset, 8, 8, ent->viewheight-8);
 	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
-	fire_rocket (ent, start, forward, damage, 650, damage_radius, radius_damage);
+	fire_rocket (ent, start, forward, damage, 5, damage_radius, radius_damage);
+	Rocket_Think(ent, start);
 
 	// send muzzle flash
 	gi.WriteByte (svc_muzzleflash);
@@ -852,7 +866,7 @@ void Weapon_Blaster_Fire (edict_t *ent)
 		damage = 15;
 	else
 		damage = 10;
-	Blaster_Fire (ent, vec3_origin, damage, false, EF_BLASTER);
+	Blaster_Fire (ent, vec3_origin, damage, true, EF_BLASTER);
 	ent->client->ps.gunframe++;
 }
 
