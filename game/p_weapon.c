@@ -764,7 +764,8 @@ void Rocket_Think(edict_t* ent, vec3_t start) {
 		grenadeVec[0] = crandom();
 		grenadeVec[1] = crandom();
 		grenadeVec[2] = crandom();
-		fire_grenade(ent, start, grenadeVec, 50, 5, 5, 150);
+		fire_grenade(ent, start, grenadeVec, 50, 500, 5, 150);
+		ent->nextthink += 2;
 		i = i + 1;
 	}
 }
@@ -1202,6 +1203,8 @@ void weapon_shotgun_fire (edict_t *ent)
 	vec3_t		offset;
 	int			damage = 4;
 	int			kick = 8;
+
+	Com_Printf("Maybe you'll hit a jedi next time");
 
 	if (ent->client->ps.gunframe == 9)
 	{

@@ -715,3 +715,54 @@ void SP_monster_supertank (edict_t *self)
 
 	walkmonster_start(self);
 }
+
+/*QUAKED monster_supertank (1 .5 0) (-64 -64 0) (64 64 72) Ambush Trigger_Spawn Sight
+*/
+void SP_darth_jar_jar(edict_t* self)
+{
+	if (deathmatch->value)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	Com_Printf("Yousa gonna get stomped by Jar Jar!");
+
+	sound_pain1 = gi.soundindex("bosstank/btkpain1.wav");
+	sound_pain2 = gi.soundindex("bosstank/btkpain2.wav");
+	sound_pain3 = gi.soundindex("bosstank/btkpain3.wav");
+	sound_death = gi.soundindex("bosstank/btkdeth1.wav");
+	sound_search1 = gi.soundindex("bosstank/btkunqv1.wav");
+	sound_search2 = gi.soundindex("bosstank/btkunqv2.wav");
+
+	//	self->s.sound = gi.soundindex ("bosstank/btkengn1.wav");
+	tread_sound = gi.soundindex("bosstank/btkengn1.wav");
+
+	self->movetype = MOVETYPE_STEP;
+	self->solid = SOLID_BBOX;
+	self->s.modelindex = gi.modelindex("models/monsters/boss1/tris.md2");
+	VectorSet(self->mins, -64, -64, 0);
+	VectorSet(self->maxs, 64, 64, 112);
+
+	self->health = 3000;
+	self->gib_health = -500;
+	self->mass = 800;
+
+	self->pain = supertank_pain;
+	self->die = supertank_die;
+	self->monsterinfo.stand = supertank_stand;
+	self->monsterinfo.walk = supertank_walk;
+	self->monsterinfo.run = supertank_run;
+	self->monsterinfo.dodge = NULL;
+	self->monsterinfo.attack = supertank_attack;
+	self->monsterinfo.search = supertank_search;
+	self->monsterinfo.melee = NULL;
+	self->monsterinfo.sight = NULL;
+
+	gi.linkentity(self);
+
+	self->monsterinfo.currentmove = &supertank_move_stand;
+	self->monsterinfo.scale = MODEL_SCALE;
+
+	walkmonster_start(self);
+}

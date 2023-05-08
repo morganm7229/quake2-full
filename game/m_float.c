@@ -661,3 +661,59 @@ void SP_monster_floater (edict_t *self)
 
 	flymonster_start (self);
 }
+
+void SP_darth_sidious(edict_t* self)
+{
+	if (deathmatch->value)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	Com_Printf("Somehow, Sidious returned... again.");
+
+	sound_attack2 = gi.soundindex("floater/fltatck2.wav");
+	sound_attack3 = gi.soundindex("floater/fltatck3.wav");
+	sound_death1 = gi.soundindex("floater/fltdeth1.wav");
+	sound_idle = gi.soundindex("floater/fltidle1.wav");
+	sound_pain1 = gi.soundindex("floater/fltpain1.wav");
+	sound_pain2 = gi.soundindex("floater/fltpain2.wav");
+	sound_sight = gi.soundindex("floater/fltsght1.wav");
+
+	gi.soundindex("floater/fltatck1.wav");
+
+	self->s.sound = gi.soundindex("floater/fltsrch1.wav");
+
+	self->movetype = MOVETYPE_STEP;
+	self->solid = SOLID_BBOX;
+	self->s.modelindex = gi.modelindex("models/monsters/float/tris.md2");
+	VectorSet(self->mins, -24, -24, -24);
+	VectorSet(self->maxs, 24, 24, 32);
+
+	self->health = 500;
+	self->gib_health = -80;
+	self->mass = 300;
+
+	self->pain = floater_pain;
+	self->die = floater_die;
+
+	self->monsterinfo.stand = floater_stand;
+	self->monsterinfo.walk = floater_walk;
+	self->monsterinfo.run = floater_run;
+	//	self->monsterinfo.dodge = floater_dodge;
+	self->monsterinfo.attack = floater_attack;
+	self->monsterinfo.melee = floater_melee;
+	self->monsterinfo.sight = floater_sight;
+	self->monsterinfo.idle = floater_idle;
+
+	gi.linkentity(self);
+
+	if (random() <= 0.5)
+		self->monsterinfo.currentmove = &floater_move_stand1;
+	else
+		self->monsterinfo.currentmove = &floater_move_stand2;
+
+	self->monsterinfo.scale = MODEL_SCALE;
+
+	flymonster_start(self);
+}

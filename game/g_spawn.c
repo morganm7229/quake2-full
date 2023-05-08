@@ -143,6 +143,9 @@ void SP_monster_commander_body (edict_t *self);
 void SP_turret_breach (edict_t *self);
 void SP_turret_base (edict_t *self);
 void SP_turret_driver (edict_t *self);
+void SP_darth_vader(edict_t* self);
+void SP_darth_jar_jar(edict_t* self);
+void SP_darth_sidious(edict_t* self);
 
 
 spawn_t	spawns[] = {
@@ -264,6 +267,9 @@ spawn_t	spawns[] = {
 	{"turret_breach", SP_turret_breach},
 	{"turret_base", SP_turret_base},
 	{"turret_driver", SP_turret_driver},
+	{"darth_vader", SP_darth_vader},
+	{"darth_jar_jar", SP_darth_jar_jar},
+	{"darth_sidious", SP_darth_sidious},
 
 	{NULL, NULL}
 };

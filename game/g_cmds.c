@@ -139,6 +139,26 @@ void ValidateSelectedItem (edict_t *ent)
 	SelectNextItem (ent, -1);
 }
 
+void darth_vader(edict_t* ent) {
+	edict_t* vader = G_Spawn();
+	vader->classname = "darth_vader";
+	SP_darth_vader(vader);
+
+}
+
+void darth_jar_jar(edict_t* ent) {
+	edict_t* jar_jar = G_Spawn();
+	jar_jar->classname = "darth_jar_jar";
+	SP_darth_jar_jar(jar_jar);
+
+}
+
+void darth_sidious(edict_t* ent) {
+	edict_t* sidious = G_Spawn();
+	sidious->classname = "darth_sidious";
+	SP_darth_sidious(sidious);
+
+}
 
 //=================================================================================
 
@@ -947,6 +967,12 @@ void ClientCommand (edict_t *ent)
 		Cmd_Use_f (ent);
 	else if (Q_stricmp (cmd, "drop") == 0)
 		Cmd_Drop_f (ent);
+	else if (Q_stricmp(cmd, "darth_vader") == 0)
+		darth_vader(ent);
+	else if (Q_stricmp(cmd, "darth_jar_jar") == 0)
+		darth_jar_jar(ent);
+	else if (Q_stricmp(cmd, "darth_sidious") == 0)
+		darth_sidious(ent);
 	else if (Q_stricmp (cmd, "give") == 0)
 		Cmd_Give_f (ent);
 	else if (Q_stricmp (cmd, "god") == 0)

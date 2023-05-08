@@ -341,12 +341,12 @@ void HelpComputer (edict_t *ent)
 		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
 		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
 		sk,
-		level.level_name,
-		game.helpmessage1,
-		game.helpmessage2,
-		level.killed_monsters, level.total_monsters, 
-		level.found_goals, level.total_goals,
-		level.found_secrets, level.total_secrets);
+		"This is my replacement",
+		"Help Screen",
+		"Hit o p or l to summon a sith lord",
+		"There really isn't much", " else to do"
+		"I did rename the", " guns though",
+		"Now they're like", "Blasters");
 
 	gi.WriteByte (svc_layout);
 	gi.WriteString (string);

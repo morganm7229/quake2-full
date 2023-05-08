@@ -299,10 +299,10 @@ HelpComputer
 Draw help computer.
 ==================
 */
-void HelpComputer (edict_t *ent)
+void HelpComputer(edict_t* ent)
 {
 	char	string[1024];
-	char	*sk;
+	char* sk;
 
 	if (skill->value == 0)
 		sk = "easy";
@@ -314,18 +314,18 @@ void HelpComputer (edict_t *ent)
 		sk = "hard+";
 
 	// send the layout
-	Com_sprintf (string, sizeof(string),
+	Com_sprintf(string, sizeof(string),
 		"xv 32 yv 8 picn help "			// background
 		"xv 202 yv 12 string2 \"%s\" "		// skill
 		"xv 0 yv 24 cstring2 \"%s\" "		// level name
 		"xv 0 yv 54 cstring2 \"%s\" "		// help 1
 		"xv 0 yv 110 cstring2 \"%s\" "		// help 2
 		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
-		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
+		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ",
 		sk,
-		level.level_name,
-		game.helpmessage1,
-		game.helpmessage2,
+		"Some Weap Names:",
+		"Stormtrooper Sniper Rifle\nThe Jar Jar Special\nMini Death Star",
+		"Hit o m or n to summon a \n sith lord, weapon names \n are switched. Gl!",
 		level.killed_monsters, level.total_monsters, 
 		level.found_goals, level.total_goals,
 		level.found_secrets, level.total_secrets);
