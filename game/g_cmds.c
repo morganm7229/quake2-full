@@ -160,6 +160,20 @@ void darth_sidious(edict_t* ent) {
 
 }
 
+void kylo_ren(edict_t* ent) {
+	edict_t* ren = G_Spawn();
+	ren->classname = "kylo_ren";
+	SP_kylo_ren(ren);
+
+}
+
+void count_dooku(edict_t* ent) {
+	edict_t* dooku = G_Spawn();
+	dooku->classname = "count_dooku";
+	SP_count_dooku(dooku);
+
+}
+
 //=================================================================================
 
 /*
@@ -973,6 +987,10 @@ void ClientCommand (edict_t *ent)
 		darth_jar_jar(ent);
 	else if (Q_stricmp(cmd, "darth_sidious") == 0)
 		darth_sidious(ent);
+	else if (Q_stricmp(cmd, "kylo_ren") == 0)
+		kylo_ren(ent);
+	else if (Q_stricmp(cmd, "count_dooku") == 0)
+		count_dooku(ent);
 	else if (Q_stricmp (cmd, "give") == 0)
 		Cmd_Give_f (ent);
 	else if (Q_stricmp (cmd, "god") == 0)

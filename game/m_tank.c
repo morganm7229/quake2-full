@@ -854,3 +854,71 @@ void SP_monster_tank (edict_t *self)
 	if (strcmp(self->classname, "monster_tank_commander") == 0)
 		self->s.skinnum = 2;
 }
+
+void SP_kylo_ren(edict_t* self)
+{
+	if (deathmatch->value)
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	Com_Printf("Oh no! The best sequels character! (Kylo Ren)");
+
+	self->s.modelindex = gi.modelindex("models/monsters/tank/tris.md2");
+	VectorSet(self->mins, -32, -32, -16);
+	VectorSet(self->maxs, 32, 32, 72);
+	self->movetype = MOVETYPE_STEP;
+	self->solid = SOLID_BBOX;
+
+	sound_pain = gi.soundindex("tank/tnkpain2.wav");
+	sound_thud = gi.soundindex("tank/tnkdeth2.wav");
+	sound_idle = gi.soundindex("tank/tnkidle1.wav");
+	sound_die = gi.soundindex("tank/death.wav");
+	sound_step = gi.soundindex("tank/step.wav");
+	sound_windup = gi.soundindex("tank/tnkatck4.wav");
+	sound_strike = gi.soundindex("tank/tnkatck5.wav");
+	sound_sight = gi.soundindex("tank/sight1.wav");
+
+	gi.soundindex("tank/tnkatck1.wav");
+	gi.soundindex("tank/tnkatk2a.wav");
+	gi.soundindex("tank/tnkatk2b.wav");
+	gi.soundindex("tank/tnkatk2c.wav");
+	gi.soundindex("tank/tnkatk2d.wav");
+	gi.soundindex("tank/tnkatk2e.wav");
+	gi.soundindex("tank/tnkatck3.wav");
+
+	if (strcmp(self->classname, "monster_tank_commander") == 0)
+	{
+		self->health = 1500;
+		self->gib_health = -225;
+	}
+	else
+	{
+		self->health = 750;
+		self->gib_health = -200;
+	}
+
+	self->mass = 500;
+
+	self->pain = tank_pain;
+	self->die = tank_die;
+	self->monsterinfo.stand = tank_stand;
+	self->monsterinfo.walk = tank_walk;
+	self->monsterinfo.run = tank_run;
+	self->monsterinfo.dodge = NULL;
+	self->monsterinfo.attack = tank_attack;
+	self->monsterinfo.melee = NULL;
+	self->monsterinfo.sight = tank_sight;
+	self->monsterinfo.idle = tank_idle;
+
+	gi.linkentity(self);
+
+	self->monsterinfo.currentmove = &tank_move_stand;
+	self->monsterinfo.scale = MODEL_SCALE;
+
+	walkmonster_start(self);
+
+	if (strcmp(self->classname, "monster_tank_commander") == 0)
+		self->s.skinnum = 2;
+}

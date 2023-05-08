@@ -146,6 +146,8 @@ void SP_turret_driver (edict_t *self);
 void SP_darth_vader(edict_t* self);
 void SP_darth_jar_jar(edict_t* self);
 void SP_darth_sidious(edict_t* self);
+void SP_kylo_ren(edict_t* self);
+void SP_count_dooku(edict_t* self);
 
 
 spawn_t	spawns[] = {
@@ -270,6 +272,8 @@ spawn_t	spawns[] = {
 	{"darth_vader", SP_darth_vader},
 	{"darth_jar_jar", SP_darth_jar_jar},
 	{"darth_sidious", SP_darth_sidious},
+	{"kylo_ren", SP_kylo_ren},
+	{"count_dooku", SP_count_dooku},
 
 	{NULL, NULL}
 };
